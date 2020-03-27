@@ -48,12 +48,12 @@
 							<div class="panel-body">                           
 								<p>
 									Título Original : ${pelicula.titulo } <br>
-									Actores :  <br>
-									Director:  <br>                  
-									Clasificación: ${pelicula.calificacion} <br>
+									Actores : ${pelicula.detalle.actores }  <br>
+									Director: ${pelicula.detalle.director } <br>                  
+									Clasificación: ${pelicula.clasificacion} <br>
 									Duración: ${pelicula.duracion } minutos <br>
 									Género: ${pelicula.genero } <br>                  
-									Fecha Estreno: ${pelicula.fechaEstado }                  
+									Fecha Estreno: ${pelicula.fechaEstreno }                  
 								</p> 
 
 							</div>
@@ -63,7 +63,7 @@
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><span class="label label-success">20-05-2017</span></h3>
+						<h3 class="panel-title"><span class="label label-success">${fechaBusqueda } </span></h3>
 					</div>
 					<div class="panel-body">
 						<table class="table table-striped">
@@ -75,41 +75,13 @@
 								</tr>
 							</thead>
 							<tbody>             
-								<tr>                 
-									<td>16:00</td>
-									<td>Sala 1</td>  
-									<td>$10</td>  
-								</tr>              
-								<tr>                 
-									<td>18:00</td>
-									<td>Sala 1</td> 
-									<td>$10</td>  
-								</tr>              
-								<tr>                 
-									<td>20:00</td>
-									<td>Sala 1</td>                        
-									<td>$10</td>  
-								</tr>              
-								<tr>                
-									<td>14:00</td>
-									<td>Sala 1</td>                       
-									<td>$10</td>  
-								</tr>              
-								<tr>               
-									<td>16:00</td>
-									<td>Sala 1</td> 
-									<td>$10</td>  
-								</tr>                             
-								<tr>                  
-									<td>20:00</td>
-									<td>Sala 1</td> 
-									<td>$10</td>  
-								</tr>              
-								<tr>                 
-									<td>22:00</td>
-									<td>Sala 1</td>  
-									<td>$10</td>  
-								</tr>              
+						 	<c:forEach items="${horarios }" var="horario">
+						 		<tr>
+						 			<td>${horario.hora }</td>
+						 			<td>${horario.sala}</td>
+						 			<td>${horario.precio }</td>
+						 		</tr>
+						 	</c:forEach>
 							</tbody>           
 						</table>
 					</div>
@@ -124,7 +96,7 @@
 							</div>
 							<div class="panel-body">
 								<iframe width="100%" height="315" 
-												src=" " >                          
+												src="${pelicula.detalle.trailer }" >                          
 								</iframe>
 							</div>
 						</div>           
@@ -135,7 +107,7 @@
 								<h3 class="panel-title">SINOPSIS</h3>
 							</div>
 							<div class="panel-body">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur.</p>
+								<p>${pelicula.detalle.sinopsis }</p>
 							</div>
 						</div>                          
 					</div>

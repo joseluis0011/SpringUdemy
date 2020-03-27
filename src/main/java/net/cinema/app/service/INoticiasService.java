@@ -1,10 +1,15 @@
 package net.cinema.app.service;
+ 
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
 import net.cinema.app.model.Noticia;
 
-@Service
+
 public interface INoticiasService {
 	void guardar(Noticia noticia);
+	List<Noticia> buscarUltimas();
+	List<Noticia> buscarTodas();
+	void eliminar(int idNoticia);
+	Noticia buscarPorId(int idNoticia);
 }

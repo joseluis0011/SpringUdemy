@@ -23,4 +23,6 @@
 	</bean>
 	
 	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
 </beans>

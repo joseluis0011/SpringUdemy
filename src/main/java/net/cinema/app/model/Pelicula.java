@@ -1,18 +1,60 @@
 package net.cinema.app.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name = "Peliculas")
 public class Pelicula {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT - IDENTITY PARA MYSQL
 	private int id;
 	private String titulo;
-	private int duracion;
-	private String calificacion;
+	private int duracion=100;
+	private String clasificacion;
 	private String genero;
 	private String imagen="cinema.png";
-	private Date fechaEstado;
+	private Date fechaEstreno;
 	private String estatus="Activa";
 	
+	//@Transient // ignorar este atributo durante la persistencia
+	@OneToOne
+	@JoinColumn(name = "idDetalle")
+	private Detalle detalle;
+	
+	@OneToMany(mappedBy = "pelicula",fetch = FetchType.EAGER)
+	private List<Horario> horarios;
+	
+	public Pelicula() {
+	//	System.out.println("constructor pelicula");
+	}
+	
+	
+	
+	public Detalle getDetalle() {
+		return detalle;
+	}
+
+
+
+	public void setDetalle(Detalle detalle) {
+		this.detalle = detalle;
+	}
+
+
+
 	public int getId() {
 		return id;
 	}
@@ -31,11 +73,11 @@ public class Pelicula {
 	public void setDuracion(int duracion) {
 		this.duracion = duracion;
 	}
-	public String getCalificacion() {
-		return calificacion;
+	public String getClasificacion() {
+		return clasificacion;
 	}
-	public void setCalificacion(String calificacion) {
-		this.calificacion = calificacion;
+	public void setClasificacion(String clasificacion) {
+		this.clasificacion = clasificacion;
 	}
 	public String getGenero() {
 		return genero;
@@ -49,11 +91,11 @@ public class Pelicula {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
-	public Date getFechaEstado() {
-		return fechaEstado;
+	public Date getFechaEstreno() {
+		return fechaEstreno;
 	}
-	public void setFechaEstado(Date fechaEstado) {
-		this.fechaEstado = fechaEstado;
+	public void setFechaEstreno(Date fechaEstreno) {
+		this.fechaEstreno = fechaEstreno;
 	}
 	public String getEstatus() {
 		return estatus;
@@ -61,12 +103,28 @@ public class Pelicula {
 	public void setEstatus(String estatus) {
 		this.estatus = estatus;
 	}
+
+
+
+	public List<Horario> getHorarios() {
+		return horarios;
+	}
+
+
+
+	public void setHorarios(List<Horario> horarios) {
+		this.horarios = horarios;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "Pelicula [id=" + id + ", titulo=" + titulo + ", duracion=" + duracion + ", calificacion=" + calificacion
-				+ ", genero=" + genero + ", imagen=" + imagen + ", fechaEstado=" + fechaEstado + ", estatus=" + estatus
-				+ "]";
-	} 
+		return "Pelicula [id=" + id + ", titulo=" + titulo + ", duracion=" + duracion + ", clasificacion="
+				+ clasificacion + ", genero=" + genero + ", imagen=" + imagen + ", fechaEstreno=" + fechaEstreno
+				+ ", estatus=" + estatus + ", detalle=" + detalle + "]";
+	}
+	 
 	
 	
 	
